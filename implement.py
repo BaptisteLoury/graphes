@@ -47,11 +47,15 @@ def remove_doublons(graphe):
     return no_doublon_graphe
 
 
-def var_dump_table(table):
+def var_dump_table(table): # afficher une matrice 
     i = 0
     for e in table:
         print(i,e)
         i+=1
+
+
+def parcourir_grahe_profondeur(graphe):
+
 
 
 # Séance 1
