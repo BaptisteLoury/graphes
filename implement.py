@@ -1,3 +1,12 @@
+from ast import IsNot
+import numpy as np
+
+# graphe = [[1,2], [2], [3], [4], []]
+# graphe=[[0,2,3,4],[1,2,4],[0,2,3,4],[1,2,3,4],[0,2,4]]
+# graphe=[[4,6,8,9],[1,2,7,9],[0,2,9],[1,4,5,6,8,9],[1,8,9],[3,4,6,9],[2,3,5,6,8,9],[3,4,5,6,8,9],[0,1,3,6,8,9],[0,1,2,5,7,9]]
+graphe=[[0,1,2,6,7,9],[1,8,9],[1,3,5,8,9],[0,2,3,4,6,9],[1,3,4,7,9],[1,4,9],[4,6,7,9],[1,2,5,9],[0,3,5,6,9],[2,5,9]]
+
+
 def calc_matrice_adj(graphe):
     card = len(graphe)
     matrice = [[0 for x in range(card)] for y in range(card)]
@@ -39,11 +48,34 @@ def remove_doublons(graphe):
     return no_doublon_graphe
 
 
-def var_dump_table(table):
+def var_dump_table(table): # afficher une matrice 
     i = 0
     for e in table:
         print(i,e)
         i+=1
+
+
+def parcourir_graphe_profondeur(graphe):
+    parcouru=[] #tableau qui permet de contenir les sommets déjà étudiés.
+    
+    
+    
+    sommet=0 # on commence par le premier sommet
+   
+    while not (len(parcouru)==len(graphe)): #Pour chacun des sommets tant qu'ils ne sont pas déjà étudiés
+        if sommet in parcouru: #s'il a déjà été étudié on change de sommet
+            sommet+=1
+        else: #s'il n'a pas été étudié encore 
+            parcouru.append(sommet) # on ajoute le sommet dans le tableau des sommets parcourus
+            #present=False
+            for j in graphe[sommet]: # on parcours les successeurs du sommet étudié
+                if j not in parcouru:
+                        parcouru.append(j)
+
+    return parcouru            
+        
+
+
 
 def matrix_with_index(matrix):
     return [(i,matrix[i]) for i in range(len(matrix))]
