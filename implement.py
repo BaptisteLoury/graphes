@@ -1,3 +1,4 @@
+from ast import IsNot
 import numpy as np
 
 # graphe = [[1,2], [2], [3], [4], []]
@@ -54,8 +55,28 @@ def var_dump_table(table): # afficher une matrice
         i+=1
 
 
-def parcourir_grahe_profondeur(graphe):
+def parcourir_grahe_profondeur(graphe, parcouru):
+    tous_sommets_parcourus= (len(parcouru)==len(graphe))
+    parcouru=[] #tableau qui permet de contenir les sommets déjà étudiés.
+    result=[]
+    sommet=0 # on commence par le premier sommet
+    present =False 
+    while not tous_sommets_parcourus: #Pour chacun des sommets tant qu'ils ne sont pas déjà étudiés
+        for i in parcouru : 
+            if i==sommet: # Si le sommet est parcouru 
+                present=True
+        if present: #s'il a déjà été étudié on change de sommet
+            sommet=+1
+        else: #s'il n'a pas été étudié encore 
+            parcouru.append(sommet) # on ajoute le sommet dans le tableau des sommets parcourus
+            #present=False
+            for j in graphe[sommet]: # on parcours les successeurs du sommet étudié
+                for k in parcouru:
+                    if not j==k: #si le sommet contenu n'est pas étudié, on va l'étudier à son tour
+                        parcouru.append(j)
 
+                   
+            
 
 
 # Séance 1
