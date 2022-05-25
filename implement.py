@@ -76,13 +76,6 @@ def parcourir_graphe_profondeur(graphe):
         
 
 
-# Séance 1
-matrix = calc_matrice_adj(graphe)
-print("Matrice d'adjacence")
-var_dump_table(matrix)
-print("Matrice de Roy Warshall (matrice)")
-matrix = roy_warshall_for_matrice(matrix)
-var_dump_table(matrix)
-# print("Matrice de Roy Warshall (list of list)")
-# graphe = roy_warshall_for_list_of_list(graphe)
-# var_dump_table(graphe)
+
+def matrix_with_index(matrix):
+    return [(i,matrix[i]) for i in range(len(matrix))]
