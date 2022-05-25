@@ -45,3 +45,5 @@ def var_dump_table(table):
         print(i,e)
         i+=1
 
+def matrix_with_index(matrix):
+    return [(i,matrix[i]) for i in range(len(matrix))]
