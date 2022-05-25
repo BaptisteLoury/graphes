@@ -1,5 +1,6 @@
 import implement as imp
 
+# deprecated
 def get_vertex_without_predecessor(matrix):
     with_predecessor = []
     for vertex in range(len(matrix)):
@@ -10,6 +11,7 @@ def get_vertex_without_predecessor(matrix):
 
     return [vertex for vertex in range(len(matrix[0])) if vertex not in with_predecessor]
 
+# expect list of tuple(int,list(int)) that stands for tuple(vertex,predecessors)
 def get_vertex_without_predecessor_V2(matrix):
     with_predecessor = []
     for vertex in matrix:
