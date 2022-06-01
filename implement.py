@@ -1,5 +1,6 @@
 from ast import IsNot
 import numpy as np
+import random as rand
 
 # graphe = [[1,2], [2], [3], [4], []]
 # graphe=[[0,2,3,4],[1,2,4],[0,2,3,4],[1,2,3,4],[0,2,4]]
@@ -16,6 +17,28 @@ def calc_matrice_adj(graphe):
                 matrice[x][y] = 1
 
     return matrice
+
+def calc_matrice_adj_non_orient(graphe):
+    card = len(graphe)
+    matrice = [[0 for x in range(card)] for y in range(card)]
+    for x in range(card):
+        for y in range(card):
+            if y in graphe[x]:
+                matrice[x][y] = 1
+                matrice[y][x] = 1
+
+    return matrice
+
+def ponderation_graphe_non_orient(matrix):
+    matrix_ponderee = matrix
+
+    for som in range(len(matrix_ponderee)):
+        matrix_ponderee[som][som] = 0
+        for succ in range(som):
+            matrix_ponderee[som][succ] = rand.randint(1,100)
+            matrix_ponderee[succ][som] = matrix_ponderee[som][succ]
+        
+    return matrix_ponderee
 
 def roy_warshall_for_matrice(matrix):
     card = len(matrix)
