@@ -35,8 +35,9 @@ def ponderation_graphe_non_orient(matrix):
     for som in range(len(matrix_ponderee)):
         matrix_ponderee[som][som] = 0
         for succ in range(som):
-            matrix_ponderee[som][succ] = rand.randint(1,100)
-            matrix_ponderee[succ][som] = matrix_ponderee[som][succ]
+            if matrix_ponderee[som][succ] != 0:
+                matrix_ponderee[som][succ] = rand.randint(1,100)
+                matrix_ponderee[succ][som] = matrix_ponderee[som][succ]
         
     return matrix_ponderee
 
