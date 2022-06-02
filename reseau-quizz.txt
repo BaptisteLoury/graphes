@@ -1,0 +1,46 @@
+Exercice 1 quizz A
+A.1 : LAN
+A.2 : CAN
+A.4 : SAN
+A.5 : PAN
+A.6 : topologie maillée
+A.7 : en étoile
+A.8 : paire torsadée
+A.9 : MAN
+A.10 : terabits/s
+
+quizz B
+B.1 : étendu
+B.2 : est à l'usage exclusif de l'entreprise
+B.3 : permet d'offrir des services bancaires aux établissements financiers
+B.4 : "tunnel"
+B.5 : les informations circulent dans un seul sens
+B.6 : en trois grand niveaux
+B.7 : de plusieurs Terabits seconde
+B.8 : cœur et collecte
+B.9 : n'existe pratiquement pas sur la partie accès
+B.10 : très haut débit et qualité de service
+
+quizz C
+C.1 : capture des informations
+C.2 : éliminier si possible le maximum de redondances
+C.3 : de permettre la correspond...
+C.4 : ETCD ou modem
+C.5 : l'alphabet
+C.6 : bits/s
+C.7 : 230 000km/s
+C.8 : dépend surtout du temps de traitement des équipements traversés
+C.9 : moins de 150ms
+C.10 : est transporté sur le canal radio attribué au mobile (émission ou réception)
+
+quizz D
+D.1 : codage complexe
+D.2 : existe en 7 et 8 bits
+D.3 : compatible avec ASCII
+D.4 : se base sur la fréquence
+D.5 : compression des données
+D.6 : l'énergie du signal de la parole
+D.7 : commence par la quantification
+D.8 : peut être de 44,1 KHz
+D.9 : l'unicité du décodage
+D.10 : dans des réseaux fixes
