@@ -1,4 +1,5 @@
 from ast import IsNot
+from re import finditer
 import numpy as np
 
 # graphe = [[1,2], [2], [3], [4], []]
@@ -73,7 +74,111 @@ def parcourir_graphe_profondeur(graphe):
                         parcouru.append(j)
 
     return parcouru            
+
+
+def estPossible(graphe, sommet, parcourus):
+    for i in graphe(sommet):
+        if i not in parcourus:
+            return True
+    return False
+
+
+# def parcourir_graphe_profondeur(graphe,sommet_depart):
+#     sommets_finis=[]
+#     sommets_parcourus=[]
+#     while not (len(sommets_parcourus)==len(graphe)):
+#         sommet=sommet_depart
+#         while not sommet in sommets_finis:
+#             while estPossible(graphe,sommet,sommets_parcourus):
+#                 for i in graphe(sommet):
+#                     if i not in sommets_parcourus:
+#                         sommet=i
+#                         sommets_parcourus.append(sommet)
+#             sommets_finis.append(sommet)
+#             # if len(sommets_parcourus)>1:
+#             sommet=sommets_parcourus(sommet-1)
+#             # else:
+#                 # sommet=sommets_parcourus(sommet)
+    
+#     return sommets_parcourus
+
+
+def parcourir_graphe_profondeur(graphe,sommet_depart):
+    
+    aTraiter=[]
+    parcouru=[]
+    sommet=sommet_depart
+    aTraiter.append(sommet)
+    while len(aTraiter)!=0:
+        sommet=aTraiter[0]
+        aTraiter.remove(sommet)
+        parcouru.append(sommet)
         
+        for i in graphe[sommet]:
+            if i not in parcouru and i not in aTraiter:
+                aTraiter.append(i)
+    return parcouru
+
+
+                
+def determiner_composantes_connexes(graphe):
+    composantes_fortement_connexes=[] 
+    sommets_restant=[]
+    for i in range(len(graphe)):
+        sommets_restant.append(i)
+    while len(sommets_restant) !=0:
+       
+        # on observe la propagation des + et on met les sommetes concernés dans une liste
+        composante_plus=parcourir_graphe_profondeur(graphe,sommets_restant[0])
+
+        #On cherche la propagation des - et on les met dans une liste
+        composante_moins=[sommets_restant[0]]
+        sommets_moins_restants=[sommets_restant[0]]
+    
+        while len(sommets_moins_restants) !=0 :
+            
+            for x in range(len(graphe)):
+                for y in graphe[x]:
+                    
+                    if sommets_moins_restants[0]==y and  x not in sommets_moins_restants and x not in composante_moins:
+                        sommets_moins_restants.append(x)
+                        composante_moins.append(x)
+            sommets_moins_restants.pop(0)    
+
+        # On prend les sommets marqués par des + et des - et on les met dans la composante fortement connexe
+        
+        composante_connexe=[]
+           
+        for k in composante_plus:
+            for l in composante_moins:
+                if k==l:
+                    composante_connexe.append(k)
+                    # composante_plus.remove(k)
+       #  on ajoute la composante connexe dans notre liste de composantes connexes  
+           
+        composantes_fortement_connexes.append(composante_connexe)
+       
+        # supprimer dans les sommets restants, les sommets de la composante fortement connexe
+        for sommet in composante_connexe:
+            sommets_restant.remove(sommet)
+
+    return composantes_fortement_connexes
+
+
+def matrice_predecesseur(graphe):
+    card = len(graphe)
+    matrice = [[0 for x in range(card)] for y in range(card)] #creation d'une matrice de 0
+    for a in range(card):
+        for b in graphe[a]:
+            matrice[b][a]=1
+    return matrice
+
+
+
+    
+
+
+
 
 
 
