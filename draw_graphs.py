@@ -54,8 +54,9 @@ def draw_graph(graph,color_map):
         G.add_node(som)
 
     for som in range(len(graph)):
-        for succ in graph[som]:
-            G.add_edge(som,succ)
+        for succ in range(len(graph[som])):
+            if graph[som][succ] != 0:
+                G.add_edge(som,succ)
 
 
     nx.draw(G, node_color=color_map, with_labels=True, font_weight='bold')

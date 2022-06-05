@@ -92,7 +92,7 @@ def parcourir_graphe_profondeur(graphe):
             sommet+=1
         else: #s'il n'a pas été étudié encore 
             parcouru.append(sommet) # on ajoute le sommet dans le tableau des sommets parcourus
-            #present=False
+            #present=False  
             for j in graphe[sommet]: # on parcours les successeurs du sommet étudié
                 if j not in parcouru:
                         parcouru.append(j)
@@ -198,13 +198,18 @@ def matrice_predecesseur(graphe):
     return matrice
 
 
+# Retourne la matrice d'un graphe pondéré non orienté sans arrêtes d'un sommet vers lui-même
+def generer_graphe_pondere(n,arts):
+    # création d'une matrice n*n de 0
+    matrice = [[0 for a in range(n)] for b in range(n)]
 
-    
+    k = 0
+    while k < arts:
+        som = rand.randint(1,n-1)
+        succ = rand.randint(0,som-1)
+        if matrice[som][succ] == 0:
+                matrice[som][succ] = rand.randint(1,1000)
+                matrice[succ][som] = matrice[som][succ]
+                k += 1
 
-
-
-
-
-
-def matrix_with_index(matrix):
-    return [(i,matrix[i]) for i in range(len(matrix))]
+    return matrice
