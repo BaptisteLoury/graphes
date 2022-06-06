@@ -2,18 +2,26 @@
 from pyparsing import match_previous_expr
 import sys
 
+from implement import var_dump_table
 
+
+# le noeud d'un arbre
 class Node:
+    # il a une valeur
+    # un parent (la racine de son ensemble)
+    # un rang (la hauteur de l'arbre)
     def __init__(self, value):
         self.value = value
         self.parent = self
         self.rang = 0
 
+    # retourne la racine de l'ensemble
     def find(self):
         if self != self.parent:
             self.parent = self.parent.find()
         return self.parent
 
+# fusionne deux ensembles en modifiant les racines des noeuds
 def union(x : Node,y : Node):
     link(x.find(),y.find())
 
@@ -28,27 +36,34 @@ def link(x : Node,y : Node):
 
 
 def kruskal(matrix):
-    # parcourt du triangle inférieur gauche uniquement car graphe non orienté
+    # récupération des arêtes triées par poids croissant
     sorted_art = get_sorted_aretes(matrix)
-    # création d'un Node pour chaque sommet
+    # création d'un Node pour chaque sommet / un ensemble pour chaque node
     nodes = [Node(som) for som in range(len(matrix))]
+
     retained_art = []
 
     k = 0
     i = 0
 
+    # tant qu'on a pas n-1 arête
     while k < len(matrix) - 1:
         art = None
+        # on parcourt les arêtes restantes
         while art is None and i < len(sorted_art):
 
             temp_art = sorted_art[i]
+            # on incrémente i pour passer à l'arête suivante
             i += 1
 
+            # si les deux noeuds de l'arête sont dans un ensemble différent
             if nodes[temp_art[0]].find() != nodes[temp_art[1]].find():
+                # on fusionne les deux ensembles
                 union(nodes[temp_art[0]],nodes[temp_art[1]])
                 art = temp_art
 
         k += 1
+        # on ajoute l'arête à l'arbre couvrant
         retained_art.append(art)
 
     return matrix_from_kruskal(retained_art)
@@ -80,12 +95,15 @@ def get_aretes_in_E(matrix,som,E):
 def matrix_from_kruskal(arts):
     # nb sommets = nb arêtes conservées + 1
     matrix = [[0 for art in range(len(arts) + 1)] for tra in range(len(arts) + 1)]
+
+    # comme il s'agit d'un graphe non orienté, la matrice est symétrique et il faut la remplir en conséquence
     for art in arts:
         matrix[art[0]][art[1]] = art[2]
         matrix[art[1]][art[0]] = art[2]
+
     return matrix
 
-def prim_bloated(matrix):
+def prim(matrix):
     # tableau des couts d'accès pour chaque sommet
     # on rempli les couts avec le plus grand int possible
     cout = [sys.maxsize] * len(matrix)
@@ -124,7 +142,9 @@ def prim_bloated(matrix):
     # on ignore la première arrête
     return matrix_from_kruskal([pred[art] for art in range(1,len(pred))])
 
-def prim(matrix):
+# différente version de l'algorithme
+# plus lente néanmoins
+def prim_bloated(matrix):
     selected = [False] * len(matrix)
     k = 0
 
@@ -136,20 +156,16 @@ def prim(matrix):
         a = 0
         b = 0
         for som in range(len(matrix)):
-            if selected[som ]:
+
+            if selected[som]:
                 for succ in range(len(matrix)):
                     if not selected[succ] and matrix[som][succ] != 0 and min > matrix[som][succ]:
                         a = som
                         b = succ
-                        print(a,b,min,matrix[som][succ])
                         min = matrix[som][succ]
 
-        
         retained_art.append((a,b,min))
-        selected[succ] = True
+        selected[b] = True
         k += 1
-    
-    print(retained_art)
-    return matrix_from_kruskal(retained_art)
 
-        
+    return matrix_from_kruskal(retained_art)

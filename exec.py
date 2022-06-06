@@ -57,12 +57,12 @@ def print_seance4():
     matrice_kruskal = abr.kruskal(matrix_ponderee)
     matrice_prim = abr.prim(matrix_ponderee)
 
-    print("Affichage de l'arbre couvrant de poids minimal trouvé par Kruskal et par Prim")
+    print("Affichage de l'arbre couvrant de poids minimal trouvé par Kruskal (gauche) et par Prim (droite)")
     draw.draw_graphs_from_matrixes(matrice_kruskal,matrice_prim)
 
 
     start = time.time()
-    matrix_ponderee = imp.generer_graphe_pondere(500,100000)
+    matrix_ponderee = imp.generer_graphe_pondere(1000,333333)
     tim = time.time() - start
     print("Temps de génération du graphe : %sscs" % tim)
 
@@ -80,3 +80,6 @@ print_seance1()
 print_seance2()
 print_seance3()
 print_seance4()
+
+# graphe = [[1],[2,0],[1]]
+# draw.draw_graph(imp.calc_matrice_adj(graphe),['grey' for i in range(len(graphe))])
