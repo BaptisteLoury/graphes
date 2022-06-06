@@ -82,53 +82,6 @@ def var_dump_table(table):
         print(i,e)
         i+=1
 
-
-# def parcourir_graphe_profondeur(graphe):
-#     parcouru=[] #tableau qui permet de contenir les sommets déjà étudiés.
-    
-    
-    
-#     sommet=0 # on commence par le premier sommet
-   
-#     while not (len(parcouru)==len(graphe)): #Pour chacun des sommets tant qu'ils ne sont pas déjà étudiés
-#         if sommet in parcouru: #s'il a déjà été étudié on change de sommet
-#             sommet+=1
-#         else: #s'il n'a pas été étudié encore 
-#             parcouru.append(sommet) # on ajoute le sommet dans le tableau des sommets parcourus
-#             #present=False
-#             for j in graphe[sommet]: # on parcours les successeurs du sommet étudié
-#                 if j not in parcouru:
-#                         parcouru.append(j)
-
-#     return parcouru            
-
-
-def estPossible(graphe, sommet, parcourus):
-    for i in graphe(sommet):
-        if i not in parcourus:
-            return True
-    return False
-
-
-# def parcourir_graphe_profondeur(graphe,sommet_depart):
-#     sommets_finis=[]
-#     sommets_parcourus=[]
-#     while not (len(sommets_parcourus)==len(graphe)):
-#         sommet=sommet_depart
-#         while not sommet in sommets_finis:
-#             while estPossible(graphe,sommet,sommets_parcourus):
-#                 for i in graphe(sommet):
-#                     if i not in sommets_parcourus:
-#                         sommet=i
-#                         sommets_parcourus.append(sommet)
-#             sommets_finis.append(sommet)
-#             # if len(sommets_parcourus)>1:
-#             sommet=sommets_parcourus(sommet-1)
-#             # else:
-#                 # sommet=sommets_parcourus(sommet)
-    
-#     return sommets_parcourus
-
 # La fonction parcourir_graphe_profondeur prend en paramètre un graphe et un sommet de départ. Elle parcourt le graphe et retourne un tableau contenant l'ordre  dans lequel les sommets sont parcourus
 def parcourir_graphe_profondeur(graphe,sommet_depart):
     
@@ -145,6 +98,8 @@ def parcourir_graphe_profondeur(graphe,sommet_depart):
             if i not in parcouru and i not in aTraiter:
                 aTraiter.append(i)
     return parcouru
+
+
 
 
 # La fonction determiner_composantes_connexes permet de trouver les composantes connexes d'un graphe       

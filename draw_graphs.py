@@ -17,6 +17,8 @@ def draw_graph_from_matrix(matrix):
 
     nx.draw_networkx_edge_labels(G, pos, edge_labels={edge:G.edges[edge]['weight'] for edge in G.edges})
 
+    plt.show()
+
 def draw_graphs_from_matrixes(m1,m2):
     G1 = nx.Graph()
     G2 = nx.Graph()

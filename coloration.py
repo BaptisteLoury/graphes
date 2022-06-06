@@ -1,4 +1,5 @@
 import implement as imp
+import draw_graphs as draw
 
 def cnt_tuple(e):
     return e[1]
@@ -73,6 +74,8 @@ def welsh_powell(graphe):
         # n enlève les sommets selectionnés de sommets
         sommets = [som for som in sommets if som not in selection]
 
-    # on retourne une liste de liste de sommets sous la forme :
+    # on a color_group sous la forme :
     # [ [0,4,5], [1,2], [3] ] où 0,4 et 5 ont la même couleur, 1 et 2 une autre, et 3 le seul de sa couleur
-    return color_group
+    # graph_color_map va associer tous les sommets d'un groupe à une même couleur et retourne :
+    # ['blue', 'green', 'green', 'red', 'blue', 'blue']
+    return draw.graph_color_map(color_group)

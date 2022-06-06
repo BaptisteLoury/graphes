@@ -1,5 +1,4 @@
 
-from pyparsing import match_previous_expr
 import sys
 
 from implement import var_dump_table
@@ -83,15 +82,6 @@ def get_sorted_aretes(matrix):
     aretes.sort(key=get_aretes_weight)
     return aretes
 
-def get_aretes_in_E(matrix,som,E):
-    # ici on considère que la matrice représente un graphe non orienté sans arêtes d'un sommet vers lui-même
-    aretes = []
-    if som < len(matrix):
-        for succ in range(len(matrix[som])):
-            if succ in E and matrix[som][succ] > 0:
-                aretes.append((som,succ,matrix[som][succ]))
-    return aretes
-
 def matrix_from_kruskal(arts):
     # nb sommets = nb arêtes conservées + 1
     matrix = [[0 for art in range(len(arts) + 1)] for tra in range(len(arts) + 1)]
@@ -102,6 +92,15 @@ def matrix_from_kruskal(arts):
         matrix[art[1]][art[0]] = art[2]
 
     return matrix
+
+def get_aretes_in_E(matrix,som,E):
+    # ici on considère que la matrice représente un graphe non orienté sans arêtes d'un sommet vers lui-même
+    aretes = []
+    if som < len(matrix):
+        for succ in range(len(matrix[som])):
+            if succ in E and matrix[som][succ] > 0:
+                aretes.append((som,succ,matrix[som][succ]))
+    return aretes
 
 def prim(matrix):
     # tableau des couts d'accès pour chaque sommet
