@@ -201,5 +201,25 @@ def matrice_predecesseur(graphe):
     return matrice
 
 
+# Retourne la matrice d'un graphe pondéré non orienté sans arrêtes d'un sommet vers lui-même
+def generer_graphe_pondere(n,arts):
+    # création d'une matrice n*n de 0
+    matrice = [[0 for a in range(n)] for b in range(n)]
+
+
+    for i in range(n-1):
+        matrice[i+1][i] = rand.randint(1,1000)
+
+    k = n-1
+    while k < arts:
+        som = rand.randint(1,n-1)
+        succ = rand.randint(0,som-1)
+        if matrice[som][succ] == 0:
+            matrice[som][succ] = rand.randint(1,1000)
+            matrice[succ][som] = matrice[som][succ]
+            k += 1
+
+    return matrice
+
 def matrix_with_index(matrix):
     return [(i,matrix[i]) for i in range(len(matrix))]
